@@ -23,10 +23,7 @@ class StockSummary::StockPrices
     end
 
     def extract
-      @received_data[:dataset_data][:data].each_with_object({}) do |point, res|
-        date, open_price, high_price, low_price = point[0..3]
-        res[date] = { open: open_price, high: high_price, low: low_price }
-      end
+      @received_data[:dataset_data][:data].map { |point| point[1] }.reverse
     end
 
     def request_uri

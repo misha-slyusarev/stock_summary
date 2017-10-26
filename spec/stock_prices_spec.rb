@@ -28,6 +28,21 @@ RSpec.describe StockSummary::StockPrices do
             "frequency": "daily",
             "data": [
                 [
+                    "2017-10-26",
+                    176.7,
+                    172.25,
+                    168.89,
+                    170.6,
+                    15095603,
+                    0,
+                    1,
+                    171.9,
+                    172.25,
+                    168.89,
+                    170.6,
+                    15095603
+                ],
+                [
                     "2017-10-25",
                     171.9,
                     172.25,
@@ -80,11 +95,7 @@ RSpec.describe StockSummary::StockPrices do
     end
 
     let(:expected_data) do
-      {
-        '2017-10-25' => { open: 171.9, high: 172.25, low: 168.89 },
-        '2017-10-24' => { open: 172.3, high: 173.24, low: 171.5 },
-        '2017-10-23' => { open: 175.2, high: 175.34, low: 171.25 }
-      }
+      [ 175.2, 172.3, 171.9, 176.7 ]
     end
 
     let(:api_key) { 'KJBIURKBWBWDBO' }
