@@ -1,13 +1,16 @@
+require 'json'
+
 class StockSummary::StockPrices
   WIKI_PATH='https://www.quandl.com/api/v3/datasets/WIKI'
 
-  def initialize(api_key, ticker, start_date)
+  def initialize(api_key)
     @api_key = api_key
-    @ticker = ticker
-    @start_date = start_date
   end
 
-  def get_data
+  def get_data(ticker, start_date)
+    @ticker = ticker
+    @start_date = start_date
+
     fetch
     extract
   end
@@ -15,7 +18,8 @@ class StockSummary::StockPrices
   private
 
     def fetch
-      @received_data = Net::HTTP.get(request_uri)
+      response = Net::HTTP.get(request_uri)
+      @received_data = JSON.parse(response)
     rescue => e
       # TODO: figure out logging
       puts("Couldn't fetch data")
@@ -23,7 +27,7 @@ class StockSummary::StockPrices
     end
 
     def extract
-      @received_data[:dataset_data][:data].map { |point| point[1] }.reverse
+      @received_data['dataset_data']['data'].map { |point| point[1] }.reverse
     end
 
     def request_uri

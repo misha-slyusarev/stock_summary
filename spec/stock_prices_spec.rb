@@ -3,11 +3,11 @@ require "spec_helper"
 RSpec.describe StockSummary::StockPrices do
   describe '#fetch' do
     let(:response) do
-      {
+      '{
         "dataset_data": {
-            "limit": nil,
-            "transform": nil,
-            "column_index": nil,
+            "limit": null,
+            "transform": null,
+            "column_index": null,
             "column_names": [
                 "Date",
                 "Open",
@@ -88,28 +88,28 @@ RSpec.describe StockSummary::StockPrices do
                     13622072
                 ]
             ],
-            "collapse": nil,
-            "order": nil
+            "collapse": null,
+            "order": null
           }
-        }
+        }'
     end
 
-    let(:expected_data) do
+    let(:stock_prices) do
       [ 175.2, 172.3, 171.9, 176.7 ]
     end
 
     let(:api_key) { 'KJBIURKBWBWDBO' }
-    let(:ticker) { 'SPY' }
+    let(:ticker) { 'FB' }
     let(:start_date) { '2017-10-23' }
 
-    subject(:request) { described_class.new(api_key, ticker, start_date).get_data }
+    subject(:request) { described_class.new(api_key).get_data(ticker, start_date) }
 
     before do
       allow(Net::HTTP).to receive(:get).and_return(response)
     end
 
-    it 'returns requested data' do
-      expect(request).to eq(expected_data)
+    it 'returns list of stock prices' do
+      expect(request).to eq(stock_prices)
     end
   end
 end
