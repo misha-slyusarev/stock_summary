@@ -7,7 +7,7 @@ class StockSummary::StockPrices
     @api_key = api_key
   end
 
-  def get_data(ticker, start_date)
+  def get_prices(ticker, start_date)
     @ticker = ticker
     @start_date = start_date
 
@@ -32,7 +32,7 @@ class StockSummary::StockPrices
 
     def request_uri
       url = "#{WIKI_PATH}/#{@ticker}/data.json?api_key=#{@api_key}&start_date=#{@start_date}"
-      @uri ||= URI(url)
+      URI(url)
     rescue URI::Error => e
       # TODO: figure out logging
       puts("Couldn't parse URL: #{url}")

@@ -102,7 +102,7 @@ RSpec.describe StockSummary::StockPrices do
     let(:ticker) { 'FB' }
     let(:start_date) { '2017-10-23' }
 
-    subject(:request) { described_class.new(api_key).get_data(ticker, start_date) }
+    subject(:request) { described_class.new(api_key).get_prices(ticker, start_date) }
 
     before do
       allow(Net::HTTP).to receive(:get).and_return(response)
