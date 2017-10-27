@@ -17,7 +17,7 @@ class StockSummary::Calculator
   private
 
     def stock_return
-      (@stock_prices.last - @stock_prices.first).round(@precision)
+      ((@stock_prices.last - @stock_prices.first) / @stock_prices.first).round(@precision)
     end
 
     def maximum_drawdown

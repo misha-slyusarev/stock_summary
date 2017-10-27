@@ -5,7 +5,7 @@ RSpec.describe StockSummary::Aggregator do
   describe '#get_stock_summary' do
     let(:ticker) { 'FB' }
     let(:start_date) { '2017-10-23' }
-    let(:message) { "Stock ticker FB has 1.5$ return and 2.0% maximum drawdown from 2017-10-23 up to now" }
+    let(:message) { "Stock ticker FB has 1.0% return and 2.0% maximum drawdown from 2017-10-23 up until now" }
     let(:stock_prices) { [ 175.2, 172.3, 171.9, 176.7 ] }
 
     subject(:get_stock_summary) { described_class.new(ticker, start_date).get_stock_summary }

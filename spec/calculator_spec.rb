@@ -3,12 +3,12 @@ require "spec_helper"
 RSpec.describe StockSummary::Calculator do
   describe '#get_summary' do
     let(:stock_prices) do
-      [ 175.2, 172.3, 171.9, 176.7 ]
+      [175.2, 172.3, 171.9, 176.7]
     end
 
     let(:correct_summary) do
       {
-        stock_return: 1.5,
+        stock_return: 0.01,
         maximum_drawdown: 0.02
       }
     end

@@ -31,7 +31,7 @@ So we can invoke following command to find out something about Facebook stock:
 ```
 $ QUANDL_TOKEN=<quandl tocken> SLACK_TOKEN=<slack token> stock_summary FB 2016-10-10 -p 3 -s general
 
-Stock ticker FB has 41.7$ return and 34.11% maximum drawdown from 2016-10-10 up to now
+Stock ticker FB has 41.7$ return and 34.11% maximum drawdown from 2016-10-10 up until now
 ```
 
 ## Development

@@ -95,7 +95,7 @@ RSpec.describe StockSummary::StockPrices do
     end
 
     let(:stock_prices) do
-      [ 175.2, 172.3, 171.9, 176.7 ]
+      [171.27, 171.8, 170.6, 170.6]
     end
 
     let(:ticker) { 'FB' }
