@@ -98,14 +98,14 @@ RSpec.describe StockSummary::StockPrices do
       [ 175.2, 172.3, 171.9, 176.7 ]
     end
 
-    let(:api_key) { 'KJBIURKBWBWDBO' }
     let(:ticker) { 'FB' }
     let(:start_date) { '2017-10-23' }
 
-    subject(:request) { described_class.new(api_key).get_prices(ticker, start_date) }
+    subject(:request) { described_class.new.get_prices(ticker, start_date) }
 
     before do
       allow(Net::HTTP).to receive(:get).and_return(response)
+      allow(ENV).to receive(:[]).with('STOCK_PRICES_TOKEN').and_return('Xls7e')
     end
 
     it 'returns list of stock prices' do
