@@ -1,28 +1,28 @@
 # StockSummary
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stock_summary`. To experiment with that code, run `bin/console` for an interactive prompt.
+The app gets a ticker (AAPL) and a start date and calculates the return the stock has generated since the start date to today as well as the maximum drawdown of the stock within that time frame.
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'stock_summary'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install stock_summary
+Then it shows the result in CLI where you start it form and also push it to a Slack channel.
 
 ## Usage
 
-TODO: Write usage instructions here
+Retrieve stock prices
+```
+sp = StockSummary::StockPrices.new('fLrJgxjwgLCcyepsgH')
+sp.get_prices('FB', '2016-10-01').count
+```
+
+Calculate stock summary
+```
+cl = StockSummary::Calculator.new
+summary = cl.get_stock_summary(sp.get_prices('FB', '2017-10-01'))
+```
+
+Push to Slack
+```
+sl = StockSummary::Slack.new('xoxb-262815399732-7NqeP6L1TPAV8Og220QjxU')
+sl.push(summary)
+```
 
 ## Development
 
@@ -34,8 +34,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/stock_summary.
 
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
