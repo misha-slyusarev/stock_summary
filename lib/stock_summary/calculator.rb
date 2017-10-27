@@ -1,7 +1,8 @@
 class StockSummary::Calculator
   ROUND_PRECISION = 2
+  #TODO: make it a parameter
 
-  def get_stock_summary(stock_prices)
+  def get_summary(stock_prices)
     @stock_prices = stock_prices
 
     {

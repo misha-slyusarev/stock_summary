@@ -1,11 +1,11 @@
 require 'json'
+require 'net/http'
 
 class StockSummary::StockPrices
   WIKI_PATH='https://www.quandl.com/api/v3/datasets/WIKI'
 
   def initialize
-    @api_token = ENV['STOCK_PRICES_TOKEN']
-    fail 'Missing STOCK_PRICES_TOKEN environment variable' unless @api_token
+    @api_token = ENV['STOCK_PRICES_TOKEN'] or fail 'Missing STOCK_PRICES_TOKEN env'
   end
 
   def get_prices(ticker, start_date)

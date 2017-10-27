@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require 'optparse'
+require 'stock_summary'
+
+ticker, start_date = ARGV
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: stock_summary [options]"
+
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
+StockSummary.get_stock_summary(ticker, start_date)
