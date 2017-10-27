@@ -11,6 +11,8 @@ class StockSummary::Aggregator
     get_stock_prices
     calculate_summary
     show_results
+  rescue StockSummary::GeneralError
+    exit
   end
 
   private
