@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe StockSummary::StockPrices do
-  describe '#fetch' do
+  describe '#get_prices' do
     let(:response) do
       '{
         "dataset_data": {

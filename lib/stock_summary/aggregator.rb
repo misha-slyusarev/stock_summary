@@ -25,10 +25,10 @@ class StockSummary::Aggregator
 
     def show_results
       message = "Stock ticker #{@ticker} has #{@summary[:stock_return]}$ return "\
-               "and #{@summary[:maximum_drawdown] * 100}% maximum drawdown "\
-               "from #{@start_date} up to now"
+                "and #{@summary[:maximum_drawdown] * 100}% maximum drawdown "\
+                "from #{@start_date} up to now"
 
       @slack.push(message)
-      puts message
+      puts(message)
     end
 end
