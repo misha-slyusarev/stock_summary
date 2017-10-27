@@ -1,8 +1,7 @@
 require 'slack-ruby-client'
 
 class StockSummary::Slack
-  SLACK_CHANNEL = '#general'
-  # TODO: make channel a parameter
+  DEFAULT_SLACK_CHANNEL = '#general'
 
   def initialize
     Slack.configure do |config|
@@ -10,9 +9,10 @@ class StockSummary::Slack
     end
 
     @client = Slack::Web::Client.new
+    @channel = StockSummary::Config.slack_channel || DEFAULT_SLACK_CHANNEL
   end
 
   def push(message)
-    @client.chat_postMessage(channel: SLACK_CHANNEL, text: message)
+    @client.chat_postMessage(channel: @channel, text: message)
   end
 end

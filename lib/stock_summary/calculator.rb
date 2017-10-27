@@ -1,6 +1,9 @@
 class StockSummary::Calculator
-  ROUND_PRECISION = 2
-  #TODO: make it a parameter
+  DEFAULT_PRECISION = 2
+
+  def initialize
+    @precision = StockSummary::Config.precision || DEFAULT_PRECISION
+  end
 
   def get_summary(stock_prices)
     @stock_prices = stock_prices
@@ -14,7 +17,7 @@ class StockSummary::Calculator
   private
 
     def stock_return
-      (@stock_prices.last - @stock_prices.first).round(ROUND_PRECISION)
+      (@stock_prices.last - @stock_prices.first).round(@precision)
     end
 
     def maximum_drawdown
@@ -28,7 +31,7 @@ class StockSummary::Calculator
           min = price
         end
 
-        drawdown = ((prev_max - min) / prev_max).round(ROUND_PRECISION)
+        drawdown = ((prev_max - min) / prev_max).round(@precision)
       end
     end
 end

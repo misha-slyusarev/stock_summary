@@ -12,13 +12,13 @@ class StockSummary::StockPrices
     @ticker = ticker
     @start_date = start_date
 
-    fetch
-    extract
+    fetch_data
+    extract_prices
   end
 
   private
 
-    def fetch
+    def fetch_data
       response = Net::HTTP.get(request_uri)
       @received_data = JSON.parse(response)
     rescue => e
@@ -27,7 +27,7 @@ class StockSummary::StockPrices
       puts(e)
     end
 
-    def extract
+    def extract_prices
       @received_data['dataset_data']['data'].map { |point| point[1] }.reverse
     end
 
