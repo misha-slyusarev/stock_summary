@@ -1,11 +1,38 @@
 # StockSummary
 
-The app gets a ticker (AAPL) and a start date and calculates the return the stock has generated since the start date to today as well as the maximum drawdown of the stock within that time frame.
+The application gets a ticker (AAPL) and a start date and calculates the return the stock has generated since the start date to today as well as the maximum drawdown of the stock within that time frame.
 
 Then it shows the results in CLI where you start it from and also push it to a Slack channel.
 
+## Setup
+
+You will need to setup accounts on [Quandl](https://www.quandl.com) and [Slack](https://slack.com). Then on Slack you should be able to create a new bot and get its API token. We will need a API token from Quandl as well.
+
 ## Usage
 
+Build and install the gem:
+```
+gem build stock_summary.gemspec
+gem install ./stock_summary-0.1.0.gem
+```
+
+From now you should be able to play with `stock_summary` utility from your console:
+```
+stock_summary -h
+```
+
+The utility expects you to set `QUANDL_TOKEN` and `SLACK_TOKEN` environment variables. This is done as environment variables because usually you don't want to pass your passwords as parameters, but instead you setup environment where you can use the utility without password. This can be setup in production environment, or there could be a separate script locally that takes general password and setup these tokens for you.
+
+`stock_summary` accepts following parameters:
+* -p -- number of digits after a comma (default is 2)
+* -s -- name of a slack channel you going to send the message to (default is general)
+
+So we can invoke following command to find out something about Facebook stock:
+```
+$ QUANDL_TOKEN=<quandl tocken> SLACK_TOKEN=<slack token> stock_summary FB 2016-10-10 -p 3 -s general
+
+Stock ticker FB has 41.7$ return and 34.11% maximum drawdown from 2016-10-10 up to now
+```
 
 ## Development
 
@@ -13,7 +40,7 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 Inside it you can test different parts of the system. Retrieve stock prices:
 ```
-ENV['STOCK_PRICES_TOKEN'] = 'quandl api key'
+ENV['QUANDL_TOKEN'] = 'quandl api key'
 sp = StockSummary::StockPrices.new
 sp.get_prices('FB', '2016-10-01').count
 ```
@@ -30,13 +57,3 @@ ENV['SLACK_TOKEN'] = 'slack api key'
 sl = StockSummary::Slack.new
 sl.push('Some text message')
 ```
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/misha-slyusarev/stock_summary.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

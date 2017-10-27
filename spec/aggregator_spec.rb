@@ -14,7 +14,7 @@ RSpec.describe StockSummary::Aggregator do
       allow_any_instance_of(Slack::Web::Client).to receive(:chat_postMessage)
       allow_any_instance_of(StockSummary::StockPrices).to receive(:get_prices).and_return(stock_prices)
       allow(ENV).to receive(:[]).with('SLACK_TOKEN').and_return('Xls7e')
-      allow(ENV).to receive(:[]).with('STOCK_PRICES_TOKEN').and_return('Xls7e')
+      allow(ENV).to receive(:[]).with('QUANDL_TOKEN').and_return('Xls7e')
       expect_any_instance_of(StockSummary::Slack).to receive(:push).with(message)
     end
 

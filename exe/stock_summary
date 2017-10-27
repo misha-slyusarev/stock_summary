@@ -5,17 +5,17 @@ require 'optparse'
 require 'stock_summary'
 
 ticker, start_date = ARGV
-ARGV << '-h' if !(ticker && start_date) || ARGV.size > 2
+ARGV << '-h' if !(ticker && start_date)
 
 OptionParser.new do |opts|
   opts.banner = "Usage: stock_summary <ticker> <start_date> [options]"
 
-  opts.on("-c", "--slack-channel", "Specify Slack channel") do |opt|
-    StockSummary.configure.slack_channel = opt
+  opts.on("-s S", String, "Specify Slack channel") do |s|
+    StockSummary.configure.slack_channel = "\##{s}"
   end
 
-  opts.on("-p", "--presiccion", "Number of digits after comma") do |opt|
-    StockSummary.configure.presiccion = opt
+  opts.on("-p N", Integer, "Number of digits after comma") do |n|
+    StockSummary.configure.precision = n
   end
 
   opts.on_tail("-h", "--help", "Show this message") do

@@ -5,7 +5,7 @@ class StockSummary::StockPrices
   WIKI_PATH='https://www.quandl.com/api/v3/datasets/WIKI'
 
   def initialize
-    @api_token = ENV['STOCK_PRICES_TOKEN'] or fail 'Missing STOCK_PRICES_TOKEN env'
+    @api_token = ENV['QUANDL_TOKEN'] or fail 'Missing QUANDL_TOKEN env'
   end
 
   def get_prices(ticker, start_date)

@@ -105,7 +105,7 @@ RSpec.describe StockSummary::StockPrices do
 
     before do
       allow(Net::HTTP).to receive(:get).and_return(response)
-      allow(ENV).to receive(:[]).with('STOCK_PRICES_TOKEN').and_return('Xls7e')
+      allow(ENV).to receive(:[]).with('QUANDL_TOKEN').and_return('Xls7e')
     end
 
     it 'returns list of stock prices' do
