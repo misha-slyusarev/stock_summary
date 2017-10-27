@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe StockSummary::Aggregator do
+RSpec.describe StockSummary::Base do
 
   describe '#get_stock_summary' do
     let(:ticker) { 'FB' }

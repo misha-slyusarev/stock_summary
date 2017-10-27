@@ -1,4 +1,4 @@
-class StockSummary::Aggregator
+class StockSummary::Base
   def initialize(ticker, start_date)
     @ticker = ticker
     @start_date = start_date
