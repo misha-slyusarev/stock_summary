@@ -19,6 +19,10 @@ gem install ./stock_summary-0.1.0.gem
 From now you should be able to play with `stock_summary` utility from your console:
 ```
 stock_summary -h
+Usage: stock_summary <ticker> <start_date> [options]
+    -s S                             Specify Slack channel
+    -p N                             Number of digits after comma
+    -h, --help                       Show this message
 ```
 
 The utility expects you to set `QUANDL_TOKEN` and `SLACK_TOKEN` environment variables. This is done as environment variables because usually you don't want to pass your passwords as parameters, but instead you setup environment where you can use the utility without password. This can be setup in production environment, or there could be a separate script locally that takes general password and setup these tokens for you.
@@ -31,7 +35,7 @@ So we can invoke following command to find out something about Facebook stock:
 ```
 $ QUANDL_TOKEN=<quandl tocken> SLACK_TOKEN=<slack token> stock_summary FB 2016-10-10 -p 3 -s general
 
-Stock ticker FB has 41.7$ return and 34.11% maximum drawdown from 2016-10-10 up until now
+Stock ticker FB has 31.0% return and 34.0% maximum drawdown from 2016-10-10 up until now
 ```
 
 ## Development
